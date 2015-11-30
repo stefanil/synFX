@@ -15,7 +15,13 @@ public class SynthesizerTest0 {
         Synthesizer synth = MidiSystem.getSynthesizer();
         synth.open();
 
+        // Instrument[] instruments = synth.getDefaultSoundbank().getInstruments();
+        Instrument[] instruments = synth.getAvailableInstruments();
+        Instrument instrument = instruments[16];
+        synth.loadInstrument(instrument);
+
         final MidiChannel[] mc = synth.getChannels();
+        mc[1].programChange(instrument.getPatch().getBank(), instrument.getPatch().getProgram());
 
         mc[1].noteOn(40,600);
 
