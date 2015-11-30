@@ -16,6 +16,7 @@ public class SynthesizerTest0 {
         synth.open();
 
         final MidiChannel[] mc = synth.getChannels();
+
         mc[1].noteOn(40,600);
 
         mc[1].setPitchBend(MAX_PITCH_BEND);
