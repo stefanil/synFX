@@ -1,4 +1,4 @@
-package org.devel;
+package org.devel.javax.sound;
 
 import javax.sound.midi.*;
 
@@ -27,8 +27,10 @@ public class SynthesizerTest0 {
 
         mc[1].setPitchBend(MAX_PITCH_BEND);
         Thread.sleep( 2000 );
+
         mc[1].setPitchBend(MIN_PITCH_BEND);
         Thread.sleep( 2000 );
+
         mc[1].setPitchBend(CENTER_PITCH_BEND);
         Thread.sleep( 2000 );
     }

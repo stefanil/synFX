@@ -1,4 +1,4 @@
-package org.devel;
+package org.devel.javax.sound;
 
 import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;

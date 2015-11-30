@@ -7,6 +7,13 @@
     <groupId>org.devel.synfx</groupId>
     <artifactId>main</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>beads</module>
+        <module>javax-sound</module>
+        <module>jsyn</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
