@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@SynFX.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.devel.synfx.beads.SynFX">
+   <children>
+      <HBox />
+      <HBox>
+         <children>
+            <Region onMousePressed="#cPressed" styleClass="key" />
+            <Region onMousePressed="#dPressed" styleClass="key" />
+            <Region onMousePressed="#ePressed" styleClass="key" />
+            <Region onMousePressed="#fPressed" styleClass="key" />
+            <Region onMousePressed="#gPressed" styleClass="key" />
+            <Region onMousePressed="#aPressed" styleClass="key" />
+            <Region onMousePressed="#hPressed" styleClass="key" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

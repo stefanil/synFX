@@ -1,0 +1,11 @@
+.key {
+    -fx-pref-width: 20px;
+    -fx-pref-height: 100px;
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: grey;
+}
+
+.key:pressed {
+    -fx-background-color: lightgrey;
+}
