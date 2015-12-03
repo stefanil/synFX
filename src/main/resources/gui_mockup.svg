@@ -38,17 +38,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="400"
-     inkscape:cy="193.10168"
+     inkscape:zoom="1"
+     inkscape:cx="160.01618"
+     inkscape:cy="240.64422"
      inkscape:document-units="px"
-     inkscape:current-layer="g5183"
+     inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="944"
-     inkscape:window-height="1001"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1672"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
      showguides="false"
      inkscape:guide-bbox="true">
     <inkscape:grid
@@ -475,7 +475,7 @@
       </g>
     </g>
     <g
-       transform="translate(228.99997,-110)"
+       transform="translate(248.99997,-110)"
        id="g4191-0">
       <g
          id="g4442">
@@ -520,7 +520,7 @@
     </g>
     <g
        id="g4480"
-       transform="translate(-80.71429,19.999997)">
+       transform="translate(-60.71429,19.999997)">
       <text
          sodipodi:linespacing="125%"
          id="text3961-6-1"
@@ -564,7 +564,7 @@
     </g>
     <g
        id="g4472"
-       transform="translate(-110.14313,19.999997)">
+       transform="translate(-90.14313,19.999997)">
       <text
          sodipodi:linespacing="125%"
          id="text3961-6-3"
@@ -608,7 +608,7 @@
     </g>
     <g
        id="g4464"
-       transform="translate(-79.285828,19.999997)">
+       transform="translate(-59.285828,19.999997)">
       <text
          sodipodi:linespacing="125%"
          id="text3961-6-11"
