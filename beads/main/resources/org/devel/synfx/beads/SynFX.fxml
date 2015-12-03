@@ -8,7 +8,7 @@
       <HBox />
       <HBox>
          <children>
-            <Region onMousePressed="#cPressed" styleClass="key" />
+            <Region onMousePressed="#cPressed" onMouseReleased="#cReleased" styleClass="key" />
             <Region onMousePressed="#dPressed" styleClass="key" />
             <Region onMousePressed="#ePressed" styleClass="key" />
             <Region onMousePressed="#fPressed" styleClass="key" />

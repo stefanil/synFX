@@ -13,20 +13,20 @@ import net.beadsproject.beads.ugens.WavePlayer;
  */
 public class SynFX {
 
-    private WavePlayer sine;
+    public static final float FREQ_C = 440.0f;
     private Glide gainGlide;
     private Gain sineGain;
+    private AudioContext ac;
+
+    private WavePlayer cWave;
 
     @FXML
     private void initialize() {
-        AudioContext ac = new AudioContext();
+        ac = new AudioContext();
 
-        sine = new WavePlayer(ac, 440.0f, Buffer.SINE);
-
-        // set up the Gain and Glide objects and connect them
         gainGlide = new Glide(ac, 0.0f, 50.0f);
+        gainGlide.setValue(0.9f);
         sineGain = new Gain(ac, 1, gainGlide);
-        sineGain.addInput(sine);
         ac.out.addInput(sineGain);
 
         ac.start();
@@ -34,7 +34,14 @@ public class SynFX {
 
     @FXML
     void cPressed(MouseEvent event) {
-        keyDown(50);
+        cWave = new WavePlayer(ac, FREQ_C, Buffer.SINE);
+        sineGain.addInput(cWave);
+        cWave.start();
+    }
+
+    @FXML
+    void cReleased(MouseEvent event) {
+        cWave.kill();
     }
 
     @FXML
@@ -68,8 +75,8 @@ public class SynFX {
     }
 
     private void keyDown(int midiPitch) {
-        if (sine != null && gainGlide != null) {
-            sine.setFrequency(pitchToFrequency(midiPitch));
+        if (cWave != null && gainGlide != null) {
+            cWave.setFrequency(pitchToFrequency(midiPitch));
             gainGlide.setValue(0.9f);
         }
     }
