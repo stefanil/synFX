@@ -2,11 +2,11 @@ package org.devel.synfx.beads;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import net.beadsproject.beads.core.AudioContext;
 import net.beadsproject.beads.data.Buffer;
 import net.beadsproject.beads.ugens.Gain;
-import net.beadsproject.beads.ugens.Glide;
 import net.beadsproject.beads.ugens.WavePlayer;
 
 /**
@@ -15,8 +15,14 @@ import net.beadsproject.beads.ugens.WavePlayer;
 public class SynFX {
 
   public static final int OCTAVE = 8;
-  
+
   private AudioContext ac;
+
+  @FXML
+  private Slider bitchBend;
+
+  @FXML
+  private Slider gain;
 
   @FXML
   private HBox octave;
@@ -24,23 +30,34 @@ public class SynFX {
   @FXML
   private void initialize() {
     ac = new AudioContext();
+    final Gain mainGain = new Gain(ac, 7, 0.0f);
+    ac.out.addInput(mainGain);
+
 
     for (int i = 0; i < octave.getChildren().size(); i++) {
       final Node key = octave.getChildren().get(i);
 
-      final Glide gainGlide = new Glide(ac, 0.0f, 50.0f);
-      final Gain sineGain = new Gain(ac, 1, gainGlide);
-      ac.out.addInput(sineGain);
+      final Gain keyGain = new Gain(ac, 1, 0.0f);
+      mainGain.addInput(keyGain);
 
       final WavePlayer wave = new WavePlayer(ac, pitchToFrequency(OCTAVE * 8 + i), Buffer.SINE);
       key.setOnMousePressed(event -> {
-        gainGlide.setValue(0.9f);
+        keyGain.setGain(0.9f);
       });
       key.setOnMouseReleased(event -> {
-        gainGlide.setValue(0.0f);
+        keyGain.setGain(0.0f);
       });
-      sineGain.addInput(wave);
+      keyGain.addInput(wave);
     }
+
+    bitchBend.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+    });
+    gain.valueProperty().addListener((observable, oldGain, newGain) -> {
+      final float converted = newGain.floatValue() / 1000.0f;
+      mainGain.setGain(converted);
+      System.out.println(mainGain.getGain());
+    });
 
     ac.start();
   }
