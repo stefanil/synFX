@@ -6,15 +6,15 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@SynFX.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.devel.synfx.beads.SynFX">
    <children>
       <HBox />
-      <HBox>
+      <HBox fx:id="octave">
          <children>
-            <Region onMousePressed="#cPressed" onMouseReleased="#cReleased" styleClass="key" />
-            <Region onMousePressed="#dPressed" styleClass="key" />
-            <Region onMousePressed="#ePressed" styleClass="key" />
-            <Region onMousePressed="#fPressed" styleClass="key" />
-            <Region onMousePressed="#gPressed" styleClass="key" />
-            <Region onMousePressed="#aPressed" styleClass="key" />
-            <Region onMousePressed="#hPressed" styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
+            <Region styleClass="key" />
          </children>
       </HBox>
    </children>
