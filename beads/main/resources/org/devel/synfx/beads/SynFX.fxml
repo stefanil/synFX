@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@SynFX.css"
-      xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.devel.synfx.beads.SynFX">
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@SynFX.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.devel.synfx.beads.SynFX">
    <children>
       <HBox>
          <children>
             <Slider fx:id="pitch" orientation="VERTICAL" />
             <Slider fx:id="gain" orientation="VERTICAL" />
+            <RadioButton fx:id="sineBuffer" mnemonicParsing="false" text="sine">
+               <toggleGroup>
+                  <ToggleGroup fx:id="buffer" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="sawBuffer" mnemonicParsing="false" text="saw" toggleGroup="$buffer" />
          </children></HBox>
       <HBox fx:id="octave">
          <children>

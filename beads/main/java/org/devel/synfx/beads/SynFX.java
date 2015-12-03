@@ -2,6 +2,7 @@ package org.devel.synfx.beads;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import net.beadsproject.beads.core.AudioContext;
@@ -16,7 +17,6 @@ import net.beadsproject.beads.ugens.WavePlayer;
 public class SynFX {
 
   public static final int OCTAVE = 8;
-
   private AudioContext ac;
 
   @FXML
@@ -24,6 +24,12 @@ public class SynFX {
 
   @FXML
   private Slider gain;
+
+  @FXML
+  public RadioButton sineBuffer;
+
+  @FXML
+  public RadioButton sawBuffer;
 
   @FXML
   private HBox octave;
@@ -56,6 +62,18 @@ public class SynFX {
         keyGain.setGain(0.0f);
       });
       keyGain.addInput(wave);
+
+      sineBuffer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        if(newValue) {
+          wave.setBuffer(Buffer.SINE);
+        }
+      });
+      sawBuffer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        if(newValue) {
+          wave.setBuffer(Buffer.SAW);
+        }
+      });
+      sineBuffer.setSelected(true);
     }
 
     gain.valueProperty().addListener((observable, oldGain, newGain) -> {
@@ -63,6 +81,7 @@ public class SynFX {
       mainGain.setGain(converted);
       System.out.println("Gain: " + mainGain.getGain());
     });
+
 
     ac.start();
   }
