@@ -17,6 +17,13 @@ import net.beadsproject.beads.ugens.WavePlayer;
 public class SynFX {
 
   public static final int OCTAVE = 8;
+  
+  private static final float TIME_ATTACK = 1000.0f;
+  private static final float TIME_DECAY = 500f;
+  private static final float TIME_RELEASE = 1000.0f;
+
+  public static final float SUSTAIN_LEVEL = 0.5f;
+  public static final float GAIN = 1.0f;
   private AudioContext ac;
 
   @FXML
@@ -49,17 +56,25 @@ public class SynFX {
       mainGain.addInput(keyGain);
 
       final Envelope pitchGain = new Envelope(ac, pitchToFrequency(OCTAVE * 8 + index));
-
       pitch.valueProperty().addListener((observable, oldValue, newValue) -> {
         pitchGain.setValue(newValue.floatValue() / 100.0f * pitchToFrequency(OCTAVE * 8 + index));
       });
 
       final WavePlayer wave = new WavePlayer(ac, pitchGain, Buffer.SINE);
+
+
       key.setOnMousePressed(event -> {
-        keyGain.setGain(1.0f);
+        final Envelope adsEnvelope = new Envelope(ac, 0.0f);
+        // TODO replace gain by current value of gain
+        adsEnvelope.addSegment(GAIN, TIME_ATTACK);
+        // TODO replace sustain level by current value of sustain level
+        adsEnvelope.addSegment(SUSTAIN_LEVEL, TIME_DECAY);
+        keyGain.setGain(adsEnvelope);
       });
       key.setOnMouseReleased(event -> {
-        keyGain.setGain(0.0f);
+        final Envelope rEnvelope = new Envelope(ac, SUSTAIN_LEVEL);
+        rEnvelope.addSegment(0.0f, TIME_RELEASE);
+        keyGain.setGain(rEnvelope);
       });
       keyGain.addInput(wave);
 
