@@ -6,6 +6,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import net.beadsproject.beads.core.AudioContext;
 import net.beadsproject.beads.data.Buffer;
+import net.beadsproject.beads.ugens.Envelope;
 import net.beadsproject.beads.ugens.Gain;
 import net.beadsproject.beads.ugens.WavePlayer;
 
@@ -19,7 +20,7 @@ public class SynFX {
   private AudioContext ac;
 
   @FXML
-  private Slider bitchBend;
+  private Slider pitch;
 
   @FXML
   private Slider gain;
@@ -35,14 +36,21 @@ public class SynFX {
 
 
     for (int i = 0; i < octave.getChildren().size(); i++) {
+      final int index = i;
       final Node key = octave.getChildren().get(i);
 
       final Gain keyGain = new Gain(ac, 1, 0.0f);
       mainGain.addInput(keyGain);
 
-      final WavePlayer wave = new WavePlayer(ac, pitchToFrequency(OCTAVE * 8 + i), Buffer.SINE);
+      final Envelope pitchGain = new Envelope(ac, pitchToFrequency(OCTAVE * 8 + index));
+
+      pitch.valueProperty().addListener((observable, oldValue, newValue) -> {
+        pitchGain.setValue(newValue.floatValue() / 100.0f * pitchToFrequency(OCTAVE * 8 + index));
+      });
+
+      final WavePlayer wave = new WavePlayer(ac, pitchGain, Buffer.SINE);
       key.setOnMousePressed(event -> {
-        keyGain.setGain(0.9f);
+        keyGain.setGain(1.0f);
       });
       key.setOnMouseReleased(event -> {
         keyGain.setGain(0.0f);
@@ -50,13 +58,10 @@ public class SynFX {
       keyGain.addInput(wave);
     }
 
-    bitchBend.valueProperty().addListener((observable, oldValue, newValue) -> {
-
-    });
     gain.valueProperty().addListener((observable, oldGain, newGain) -> {
       final float converted = newGain.floatValue() / 1000.0f;
       mainGain.setGain(converted);
-      System.out.println(mainGain.getGain());
+      System.out.println("Gain: " + mainGain.getGain());
     });
 
     ac.start();
